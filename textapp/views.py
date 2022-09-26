@@ -1,4 +1,4 @@
-from curses.ascii import HT
+
 from django.shortcuts import render, HttpResponse
 from django.http import FileResponse
 import os
@@ -18,7 +18,7 @@ def index(request):
 
         file = open(os.path.join(settings.BASE_DIR, "yourtext.mp3"), 'rb')
 
-        return HttpResponse(file, content_type="audio/mpeg") 
+        return FileResponse(file, as_attachment=True) 
 
 
     return render(request, "index.html")
