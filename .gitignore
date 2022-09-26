@@ -1,0 +1,5 @@
+nlpenv/
+.env
+core/__pycache__/
+textapp/__pycache__/
+db.sqlite3
