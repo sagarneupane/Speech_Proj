@@ -3,3 +3,4 @@ nlpenv/
 core/__pycache__/
 textapp/__pycache__/
 db.sqlite3
+media/
