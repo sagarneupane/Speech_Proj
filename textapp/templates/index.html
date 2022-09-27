@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Speak Up</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
 </head>
 <body>
     <div class="container mt-5">
@@ -14,10 +17,47 @@
 
         <form action="" method="POST">
             {% csrf_token %}
-            <input type="text" name="text_to_speak" id="speak" placeholder="नेपालि शब्दहरु मात्र दिनु होला" class="p-5 m-3">
+            <textarea name="text_to_speak" 
+            id="speak" placeholder="नेपालि शब्दहरु मात्र दिनु होला" class="p-5 m-3" rows="5" cols="100">
+            </textarea>
             <br>
             <input type="submit" value="Speak" class="btn btn-success m-3">
         </form>
+
+        <div id='translControl' class="container"></div>
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/googleinput.js' %}"></script>
+    <script>
+          
+      // Load the Google Transliteration API
+      google.load("elements", "1", {
+        packages: "transliteration"
+      });
+    
+      function onLoad() {
+        var options = {
+          sourceLanguage: 'en',
+          destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI],
+          shortcutKey: 'ctrl+m',
+          transliterationEnabled: true
+        }
+    
+        // Create an instance on TransliterationControl with the required options.
+        var control = new google.elements.transliteration.TransliterationControl(options);
+    
+        // Enable transliteration in the textfields with the given ids.
+        var ids = ["speak"];
+        control.makeTransliteratable(ids);
+    
+        // Show the transliteration control which can be used to toggle between English and Hindi and also choose other destination language.
+        control.showControl('translControl');
+      }
+    
+      google.setOnLoadCallback(onLoad);
+    
+    </script>
 </body>
 </html>
