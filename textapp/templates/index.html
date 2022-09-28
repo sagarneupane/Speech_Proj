@@ -15,16 +15,27 @@
 
         <h1>याहा हजुरले चाहेको कुरालाई बोलाउन सक्नुहुन्छ । </h1>
 
-        <form action="" method="POST">
+        <form action="" method="POST" autocomplete="on">
             {% csrf_token %}
-            <textarea name="text_to_speak" 
-            id="speak" placeholder="नेपालि शब्दहरु मात्र दिनु होला" class="p-5 m-3" rows="5" cols="100">
+            <textarea placeholder="करिपया "  name="text_to_speak" 
+            id="speak" class="p-5 m-3" rows="5" cols="100">
             </textarea>
             <br>
-            <input type="submit" value="Speak" class="btn btn-success m-3">
+            
+            <input type="submit" value="Speak" class="btn btn-success m-3 center">
         </form>
 
-        <div id='translControl' class="container"></div>
+        {% if audio_file %}
+        <div class="container mt-5 p-4">
+          <audio controls>
+            <source src="media/yourtext.mp3" type="audio/mpeg">
+            <source src="media/yourtext.mp3" type="audio/ogg">
+          Your browser does not support the audio element.
+          </audio> 
+        </div>
+        {% endif %}
+
+        <!-- <div id='translControl' class="container"></div> -->
     </div>
 
 
@@ -40,7 +51,7 @@
       function onLoad() {
         var options = {
           sourceLanguage: 'en',
-          destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI],
+          destinationLanguage: [google.elements.transliteration.LanguageCode.NEPALI],
           shortcutKey: 'ctrl+m',
           transliterationEnabled: true
         }
@@ -57,7 +68,7 @@
       }
     
       google.setOnLoadCallback(onLoad);
-    
+      
     </script>
 </body>
 </html>
