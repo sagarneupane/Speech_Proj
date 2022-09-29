@@ -18,7 +18,7 @@
         <form action="" method="POST" autocomplete="on">
             {% csrf_token %}
             <textarea placeholder="करिपया "  name="text_to_speak" 
-            id="speak" class="p-5 m-3" rows="5" cols="100">
+            id="speak" rows="5" cols="100">
             </textarea>
             <br>
             
@@ -27,7 +27,7 @@
 
         {% if audio_file %}
         <div class="container mt-5 p-4">
-          <audio controls>
+          <audio controls class="embed-responsive-item">
             <source src="media/yourtext.mp3" type="audio/mpeg">
             <source src="media/yourtext.mp3" type="audio/ogg">
           Your browser does not support the audio element.
