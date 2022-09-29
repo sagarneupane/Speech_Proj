@@ -15,11 +15,9 @@
 
         <h1>याहा हजुरले चाहेको कुरालाई बोलाउन सक्नुहुन्छ । </h1>
 
-        <form action="" method="POST" autocomplete="on">
+        <form action="" method="POST">
             {% csrf_token %}
-            <textarea placeholder="करिपया "  name="text_to_speak" 
-            id="speak" rows="5" cols="100">
-            </textarea>
+            <textarea name="text_to_speak" id="speak" rows="10" cols="100"> </textarea>
             <br>
             
             <input type="submit" value="Speak" class="btn btn-success m-3 center">
@@ -27,7 +25,7 @@
 
         {% if audio_file %}
         <div class="container mt-5 p-4">
-          <audio controls class="embed-responsive-item">
+          <audio controls class="embed-responsive-item" autoplay>
             <source src="media/yourtext.mp3" type="audio/mpeg">
             <source src="media/yourtext.mp3" type="audio/ogg">
           Your browser does not support the audio element.

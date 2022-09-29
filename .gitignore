@@ -1,4 +1,4 @@
-nlpenv/
+nplenv/
 .env
 core/__pycache__/
 textapp/__pycache__/
