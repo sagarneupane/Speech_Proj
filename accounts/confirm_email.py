@@ -1,8 +1,10 @@
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes,force_str
 from django.core.mail import EmailMessage, send_mail
+from django.utils.html import strip_tags
 
 from django.conf import settings
 
@@ -12,43 +14,24 @@ from  accounts.models import MyUser
 
 def send_email(request,user):
 
-    # Sending Mail To User
-    # Welcome Mail
-    subject = "Welcome to NepSpeech!!"
-    message = "Hello "+ user.first_name + "!!!\n " \
-    + "Welcome to NepSpeech Site\n\n" + \
-    "Thank you for visting our site \n "+ \
-    "We have sent you a confirmation email.\n"+ \
-    "Please verify it in order to activate your account!!\n\n"+ \
-    "Thanking you!!! NepSpeech team"
-
+    subject = "Welcome From Nepspeech"
     from_email = settings.EMAIL_HOST_USER
     to_list = [user.email]
-    send_mail(subject,message,from_email,to_list,fail_silently=True)
+    html_message = render_to_string("congrats_email.html")
+    message = strip_tags(html_message)
+    send_mail(subject,message,from_email,to_list,html_message=html_message,fail_silently=True)
 
-    # # End of Welcome Mail
-    # if send_mail(subject,message,from_email,to_list,fail_silently=True):
-    #     print("Yes Mail is sent")
-    # else:
-    #     print("Not Working")
-
-    # Start of Email Confirmation 
     current_site = get_current_site(request)
-    email_subject = "Confirmation Email From Auction Bidding!!"
-    confirm_message = render_to_string("email_confirmation.html",{
+    email_subject = "Confirmation Email From NepSpeech"
+    confirm_message = render_to_string("emailtemplate.html",{
         'name':user.first_name,
         'domain':current_site,
         'uid':urlsafe_base64_encode(force_bytes(user.pk)),
         'token':generate_token.make_token(user),
     })
-    email = EmailMessage(
-        email_subject,
-        confirm_message,
-        from_email,
-        to_list,
-    )
-    email.fail_silently = True
-    email_to_sent = email.send()
+    message = strip_tags(confirm_message)
+
+    email_to_sent = send_mail(email_subject, message, from_email, to_list, html_message=confirm_message)
     
     if email_to_sent:
         return True

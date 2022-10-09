@@ -1,5 +1,5 @@
 
-EMAIL_HOST_PASSWORD = "qcadyvhnhmjltkuw"
+
 # app_password = "9800549800"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587

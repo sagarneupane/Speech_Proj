@@ -1,7 +1,11 @@
+import imp
+from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.views import View
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+
 
 from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm
 from accounts.models import MyUser
@@ -89,3 +93,21 @@ def activate_account(request, uidb64, token):
         return redirect("signin")
     
     return render(request, "activation_failed.html")
+
+
+
+def random_email_sender(request):
+    from django.conf import settings
+    from django.core.mail import send_mail
+    from django.template.loader import render_to_string
+    from django.utils.html import strip_tags
+
+
+    sender = settings.EMAIL_HOST_USER
+    receiver = ["sagar.neupane419@gmail.com"]
+
+    email_subject = "Welcome Email From NepSpeech"
+    email_message = render_to_string("congrats_email.html")
+    message = strip_tags(email_message)
+    send_mail(email_subject, message, sender, receiver, html_message=email_message)
+    return HttpResponse("<h1>Your Email Has been successfully Sent</h1>")
