@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import FileResponse
 import os
 from django.conf import settings
-
+from textapp import audio_formatter 
 
 def index(request):
     file = None
@@ -20,6 +20,8 @@ def index(request):
 
         # return FileResponse(file, as_attachment=True) 
 
-    return render(request, "index.html",{"audio_file":file})
+        audio_formatter.convert_mp3_into_wav()
+        audio_formatter.change_pitch_and_save(100)
 
+    return render(request, "index.html",{"audio_file":file})
 

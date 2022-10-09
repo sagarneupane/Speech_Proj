@@ -2,17 +2,19 @@
 from pathlib import Path
 import os
 import dotenv
+from accounts.email_details import *
 
 dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = str(os.getenv("DJANGO_SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'textapp',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -68,10 +71,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'default':{
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME':os.environ.get("POSTGRES_DB"),
+        'HOST':'data_base',
+        'USER':os.environ.get("POSTGRES_USER"),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
+        'PORT':'5432',
+        }
 }
 
 
@@ -123,3 +134,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # STATICFILES_DIRS = [STATIC_DIR]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
+
+AUTH_USER_MODEL = "accounts.MyUser"

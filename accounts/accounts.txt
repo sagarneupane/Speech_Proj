@@ -1,0 +1,9 @@
+First Name
+Middle Name
+Last Name
+Date of Birth
+Username
+Email
+Password(Strong)
+age
+phonenumber

@@ -1,0 +1,201 @@
+
+
+
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                  alt="Sample photo" class="img-fluid"
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">User registration form</h3>
+                    
+                  <div class="row">
+                    <!-- First Name -->
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          {{form.first_name}}
+                          <label class="form-label" for="{{form.first_name.id}}">{{form.first_name.label}}</label>
+                       
+                        </div>
+                          {% if form.first_name.errors %}
+                              <small class="text-danger">{{form.first_name.errors | striptags}}</small>
+                        
+                          {% else %}
+                              <small class="text-primary">{{form.first_name.help_text}}</small>
+                          {% endif %}
+  
+                    </div>
+
+                    <!-- Middle Name -->
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          {{form.middle_name}}
+                          <label class="form-label" for="{{form.middle_name.id}}">{{form.middle_name.label}}</label>
+                       
+                        </div>
+                          {% if form.middle_name.errors %}
+                              <small class="text-danger">{{form.middle_name.errors | striptags}}</small>
+                        
+                          {% else %}
+                              <small class="text-primary">{{form.middle_name.help_text}}</small>
+                          {% endif %}
+  
+                      </div>
+
+                      <!-- Last Name -->
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                        {{form.last_name}}
+                        <label class="form-label" for="{{form.last_name.id}}">{{form.last_name.label}}</label>
+                    
+                        </div>
+                        {% if form.last_name.errors %}
+                            <small class="text-danger">{{form.last_name.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.last_name.help_text}}</small>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Age -->
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                        {{form.age}}
+                        <label class="form-label" for="{{form.age.id}}">{{form.age.label}}</label>
+                    
+                        </div>
+                        {% if form.age.errors %}
+                            <small class="text-danger">{{form.age.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.age.help_text}}</small>
+                        {% endif %}
+
+                    </div>
+                    <!-- Date of Birth -->
+                    <div class="col-md-8 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.date_of_birth}}
+                        <label class="form-label" for="{{form.date_of_birth.id}}">{{form.date_of_birth.label}}</label>
+                    
+                        </div>
+                        {% if form.date_of_birth.errors %}
+                            <small class="text-danger">{{form.date_of_birth.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.date_of_birth.help_text}}</small>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Email -->
+
+                    <div class="col-md-10 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.email}}
+                        <label class="form-label" for="{{form.email.id}}">{{form.email.label}}</label>
+                    
+                        </div>
+                        {% if form.email.errors %}
+                            <small class="text-danger">{{form.email.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.email.help_text}}</small>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Phonenumber -->
+                    <div class="col-md-10 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.phone_number}}
+                        <label class="form-label" for="{{form.phone_number.id}}">{{form.phone_number.label}}</label>
+                    
+                        </div>
+                        {% if form.phone_number.errors %}
+                            <small class="text-danger">{{form.phone_number.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.phone_number.help_text}}</small>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- Username -->
+                    <div class="col-md-10 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.username}}
+                        <label class="form-label" for="{{form.username.id}}">{{form.username.label}}</label>
+                    
+                        </div>
+                        {% if form.username.errors %}
+                            <small class="text-danger">{{form.username.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.username.help_text}}</small>
+                        {% endif %}
+
+                    </div>     
+
+                    <!--  Password1 -->
+                    <div class="col-md-10 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.password1}}
+                        <label class="form-label" for="{{form.password1.id}}">{{form.password1.label}}</label>
+                    
+                        </div>
+                        {% if form.password1.errors %}
+                            <small class="text-danger">{{form.password1.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.password1.help_text}}</small>
+                        {% endif %}
+
+                    </div> 
+
+                    <!--  Password2 -->
+                    <div class="col-md-10 mb-4 offset-sm-1">
+                        <div class="form-outline">
+                        {{form.password2}}
+                        <label class="form-label" for="{{form.password2.id}}">{{form.password2.label}}</label>
+                    
+                        </div>
+                        {% if form.password2.errors %}
+                            <small class="text-danger">{{form.password2.errors | striptags}}</small>
+                        
+                        {% else %}
+                            <small class="text-primary">{{form.password2.help_text}}</small>
+                        {% endif %}
+
+                    </div> 
+                    
+                    {% if form.non_field_errors %}
+                        <div class="col-md-10 mb-4 offset-sm-1">
+                            <p class="text-danger">{{form.non_field_errors}}</p>
+                        </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-12 mb-4 text-center">
+                    <input type="submit" value="Signup" class="btn btn-success">
+                  </div>
+                  <div class="col-md-12 mb-4 text-center">
+                    <p>
+                        Already Have Account? <a href="{% url 'signin' %}">Login</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
