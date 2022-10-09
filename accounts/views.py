@@ -92,11 +92,12 @@ def activate_account(request, uidb64, token):
         messages.success(request,"Your Account Has been Successfully Activated! Login To Continue")
         return redirect("signin")
     
-    return render(request, "activation_failed.html")
+    return render(request, "email/activation_failed.html")
 
 
 
 def random_email_sender(request):
+
     from django.conf import settings
     from django.core.mail import send_mail
     from django.template.loader import render_to_string
@@ -111,3 +112,8 @@ def random_email_sender(request):
     message = strip_tags(email_message)
     send_mail(email_subject, message, sender, receiver, html_message=email_message)
     return HttpResponse("<h1>Your Email Has been successfully Sent</h1>")
+
+
+
+def dummy_response(request):
+    return render(request, "dummy.html")

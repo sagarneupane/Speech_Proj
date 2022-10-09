@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block titlename %}
+    Login
+{% endblock titlename %}
+
+{% block style %}
+<style>
+    .divider:after,
+    .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    }
+    .h-custom {
+    height: calc(100% - 73px);
+    }
+    @media (max-width: 450px) {
+    .h-custom {
+    height: 100%;
+    }
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{message}}
+      </div>
+    {% endfor %}
+    {% endif %}
+    
+    {% csrf_token  %}
+
+    {% include 'login.html' %}
+
+</form>
+
+{% endblock content %}
