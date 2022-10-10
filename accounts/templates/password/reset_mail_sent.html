@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block titlename %}
+    Reset Mail Confirm
+{% endblock titlename %}
+
+{% block content %}
+    <div class="container-fluid bg-primary">
+
+        <div class="row p-5">
+            <div class="col-sm-12 mb-3">
+                <h1 class="text-success bg-light text-center p-2">Reset Email Send NepSpeech</h1>
+            </div>
+            <div class="col-sm-8">
+                <img src="{% static 'images/3053910.jpg' %}" alt="image" class="img-fluid" height="100%" width="100%">
+            </div>
+            <div class="col-sm-4 mt-5 p-2">
+                <p class="text-light bg-dark p-4">We have sent you</p>
+                <p class="text-success bg-dark p-4">Confirmation Email to your account</p>
+                <p class="text-light bg-dark p-4">Please Check your Email.</p>
+                <p class="text-light bg-dark p-4">If you didn't recieve any mail.</p>
+                <p class="text-light bg-dark p-4">Please Try Again with the registered email address</p>
+                <p class="text-warning bg-dark p-4">Thank You ! Nepspeech Team</p>
+            </div>
+            
+        </div>        
+    </div>
+    
+{% endblock content %}

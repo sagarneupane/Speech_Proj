@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -49,8 +48,10 @@
     <div class="container" style="background-color: #aeae;">
         <div class="card bg-danger">
             <div class="text-right cross"> <i class="fa fa-times"></i> </div>
-            <div class="card-body text-center"> <img src="https://img.icons8.com/bubbles/200/000000/trophy.png">
-                <h4 class="heading4">CONGRATULATIONS!</h4>
+            <div class="card-body text-center"> 
+                {% load static %}
+                <img src="https://t4.ftcdn.net/jpg/03/41/47/73/360_F_341477352_FPoRvWnWWqdzVFnIWn3on34gYWaSEX2K.jpg" height="100%" width="100%">
+                <h4 class="heading4">Welcome!</h4>
                 <p class="paragraph">You are now a part of beautiful team. Welcome to  <span class="company">NepSpeech</span>  Family</p> 
                 <p class="note">You will recieve a confirmation email shortly. You can confirm your Identity via confirmation link 
                     sent to the email.

@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="container-fluid p-5 bg-warning" style="height:100vh;">
+
+    <div class="row bg-secondary mt-5">
+        <div class="col-sm-6 col-lg-6 col-md-6 p-3">
+            <img src="{% static 'images/oops.jpg' %}" alt="" class="img-fluid">
+        </div>
+        <div class="col-sm-5 col-lg-5 col-md-5 p-3 text-dark text-center">
+            <h4 class="mt-5 h3 bg-danger p-5" style="font-family:cursive;">The given link has expired or had been already used.</h4>
+            <p class="mt-5 bg-info p-3 h6" style="font-family:Georgia, 'Times New Roman', Times, serif">The password reset link was invalid, 
+                possibly because it has already been used. 
+                 Please request a new password reset.
+            </p>
+            <a class="btn btn-info mt-5 p-2 text-center" href="{% url 'password_reset' %}">Click Here to Reset password</a>
+            <span class="p-3 lead">or</span>    
+            <a class="btn btn-success mt-5 p-2" href="{% url 'signin' %}">Login Again</a>
+        </div>
+    </div>
+
+</div>

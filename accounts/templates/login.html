@@ -6,7 +6,6 @@
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
             <div class="col-md-12 col-lg-12 mb-4 offset-lg-2">
                 <h3 class="text-success">Nep<span class="text-capitalize text-danger">speech </span>Login</h1>
             </div>
@@ -34,7 +33,7 @@
                   Remember me
                 </label>
               </div>
-              <a href="#!" class="text-body">Forgot password?</a>
+              <a href="{% url 'password_reset' %}" class="text-body">Forgot password?</a>
             </div>
   
             <div class="text-center text-lg-start mt-4 pt-2">
@@ -43,8 +42,7 @@
               <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{% url 'signup' %}"
                   class="link-danger">Register</a></p>
             </div>
-  
-          </form>
+
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm,PasswordResetForm,SetPasswordForm
 from accounts.models import MyUser
 
 
@@ -76,5 +75,28 @@ class CustomAuthenticationForm(AuthenticationForm):
         })
         self.fields["password"].widget.attrs.update({
             "id":"password",
+            "class":"form-control form-control-lg",
+        })
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs.update({
+            "id":"email",
+            "class":"form-control form-control-lg",
+        })
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["new_password1"].widget.attrs.update({
+            "id":"password1",
+            "class":"form-control form-control-lg",
+        })
+        self.fields["new_password2"].widget.attrs.update({
+            "id":"password2",
             "class":"form-control form-control-lg",
         })

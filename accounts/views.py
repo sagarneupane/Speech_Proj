@@ -1,15 +1,17 @@
-import imp
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.views import View
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth import views as auth_views
 
-
-from accounts.forms import CustomUserCreationForm, CustomAuthenticationForm
+from accounts.forms import CustomPasswordResetForm, CustomSetPasswordForm, CustomUserCreationForm, CustomAuthenticationForm
 from accounts.models import MyUser
 from accounts.confirm_email import send_email, activate
+
+
+
 
 class SignupView(View):
     form_class = CustomUserCreationForm
@@ -34,9 +36,9 @@ class SignupView(View):
             if email_sent:
                 
                 messages.success(request,
-                "Your account has been successfully Created.A confirmation" \
-"mail has been sent to your account Please follow the precautions in order to"\
-"Activate your account")
+                "Your account has been successfully Created. A confirmation" \
+" mail has been sent to your account please follow the necessary precautions in order to"\
+" activate your account")
             
             else:
                 messages.warning(request,"Something Went Wrong Please Try Again.")
@@ -96,19 +98,56 @@ def activate_account(request, uidb64, token):
 
 
 
+class PasswordResetView(auth_views.PasswordResetView):
+    template_name = "password/password_reset.html"
+    form_class = CustomPasswordResetForm
+    email_template_name = "password/password_reset_email.html"
+    html_email_template_name = "password/password_reset_email.html"
+
+class PasswordResetDoneView(auth_views.PasswordResetDoneView):
+    template_name = "password/reset_mail_sent.html"
+    
+
+
+class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    template_name = "password/password_reset_confirm.html"
+    form_class = CustomSetPasswordForm
+
+class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = "password/password_reset_complete.html"
+
+
+
+
 def random_email_sender(request):
 
     from django.conf import settings
     from django.core.mail import send_mail
     from django.template.loader import render_to_string
     from django.utils.html import strip_tags
-
+    from django.contrib.sites.shortcuts import get_current_site
 
     sender = settings.EMAIL_HOST_USER
     receiver = ["sagar.neupane419@gmail.com"]
 
     email_subject = "Welcome Email From NepSpeech"
-    email_message = render_to_string("congrats_email.html")
+
+    use_https = request.is_secure()
+    current_site = get_current_site(request)
+    
+    protocol="http"
+
+    if use_https:
+        protocol="https"
+
+    email_message = render_to_string("email/congrats_email.html",{
+        "domain":current_site,
+        "protocol":protocol
+        })
+
+
+
+    # email_message = render_to_string("email/congrats_email.html",{""})
     message = strip_tags(email_message)
     send_mail(email_subject, message, sender, receiver, html_message=email_message)
     return HttpResponse("<h1>Your Email Has been successfully Sent</h1>")
