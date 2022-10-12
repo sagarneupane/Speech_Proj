@@ -1,15 +1,16 @@
-from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth import views as auth_views
 
-from accounts.forms import CustomPasswordResetForm, CustomSetPasswordForm, CustomUserCreationForm, CustomAuthenticationForm
-from accounts.models import MyUser
+from accounts.forms import (
+    CustomPasswordResetForm, 
+    CustomSetPasswordForm, 
+    CustomUserCreationForm,
+    CustomAuthenticationForm)
 from accounts.confirm_email import send_email, activate
-
 
 
 
@@ -76,13 +77,6 @@ class SigninView(View):
             return redirect("profile")
 
 
-class ProfileView(View):
-    template_name = "profile.html"
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-
 def signout(request):
     logout(request)
     return redirect("signin")
@@ -97,25 +91,24 @@ def activate_account(request, uidb64, token):
     return render(request, "email/activation_failed.html")
 
 
-
 class PasswordResetView(auth_views.PasswordResetView):
     template_name = "password/password_reset.html"
     form_class = CustomPasswordResetForm
     email_template_name = "password/password_reset_email.html"
     html_email_template_name = "password/password_reset_email.html"
 
+
 class PasswordResetDoneView(auth_views.PasswordResetDoneView):
     template_name = "password/reset_mail_sent.html"
     
-
 
 class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = "password/password_reset_confirm.html"
     form_class = CustomSetPasswordForm
 
+
 class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = "password/password_reset_complete.html"
-
 
 
 
@@ -156,3 +149,11 @@ def random_email_sender(request):
 
 def dummy_response(request):
     return render(request, "dummy.html")
+
+
+
+class ProfileView(View):
+    template_name = "profile.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
