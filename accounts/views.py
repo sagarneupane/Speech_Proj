@@ -59,7 +59,7 @@ class SigninView(View):
         if not request.user.is_authenticated:
             form = self.form_class(initial=self.initial)
             return render(request, self.template_name, {'form':form})
-        return redirect("profile")
+        return redirect("index")
     
     def post(self, request):
         if not request.user.is_authenticated:
@@ -69,12 +69,12 @@ class SigninView(View):
                     user = authenticate(username=fm.cleaned_data['username'],password=fm.cleaned_data['password'])
                     if user is not None:
                         login(request,user)
-                        return redirect("profile")
+                        return redirect("index")
             else:      
                 fm = self.form_class()
             return render(request,self.template_name,{"form":fm})
         else:
-            return redirect("profile")
+            return redirect("index")
 
 
 def signout(request):

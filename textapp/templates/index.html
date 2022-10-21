@@ -12,7 +12,9 @@
 </head>
 <body>
     <div class="container mt-5">
+        <h2>Hello {{request.user.username}}</h2>
 
+        <a href="{% url 'signout' %}">Logout</a>
         <h1>याहा हजुरले चाहेको कुरालाई बोलाउन सक्नुहुन्छ । </h1>
 
         <form action="" method="POST">

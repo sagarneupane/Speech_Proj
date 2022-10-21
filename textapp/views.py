@@ -1,10 +1,13 @@
 
 from django.shortcuts import render, HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.http import FileResponse
 import os
 from django.conf import settings
 from textapp import audio_formatter 
 
+
+@login_required(login_url="signin")
 def index(request):
     file = None
     if request.method == 'POST':
